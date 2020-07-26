@@ -1,10 +1,8 @@
 'use strict'
 //@ts-check
-import promo from './modules/promo';
-import tabs from './modules/tabs';
-export const handlerEvent = [];
+import { HeaderComponent  } from './components/header.component';
 
-promo('.get-started', '#header');
-tabs('#navigation')
+const header = new HeaderComponent('header');
+
 
 
