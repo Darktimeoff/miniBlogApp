@@ -1,6 +1,10 @@
 'use strict'
 //@ts-check
-console.log('start running');
-async function app() {
-    await fetch('awk');
-}
+import promo from './modules/promo';
+import tabs from './modules/tabs';
+export const handlerEvent = [];
+
+promo('.get-started', '#header');
+tabs('#navigation')
+
+
