@@ -8,6 +8,11 @@
     "start": "",
     "build": ""
   },
+  "keywords": [
+    "js",
+    "blog",
+    "javascript"
+  ],
   "author": "Jeny Korolihin <alexkorolixinofficial@gmail.com>",
   "license": "ISC"
 }
