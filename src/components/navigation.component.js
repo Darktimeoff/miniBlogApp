@@ -2,6 +2,8 @@ import { Component } from '../core/component'
 export class NavigationComponent extends Component {
     constructor(id) {
         super(id);
+
+        this.tabs = []
     }
 
     init() {
@@ -11,6 +13,10 @@ export class NavigationComponent extends Component {
         _setLocalNavigation(tabs);
 
         navigation.addEventListener('click', _tabClickHandler.bind(this))
+    }
+
+    registerTabs(tabs) {
+        this.tabs = tabs;
     }
 
     destroy() {
@@ -25,9 +31,12 @@ function _tabClickHandler(e) {
 
     const tabs = navigation.querySelectorAll('.tab');
     const tab = e.target;
-
+    
     _hideAllActiveClass(tabs);
     _showActivClass(tab);
+
+    _hideAllComponent.call(this);
+    _showActiveComponent.call(this, tab.dataset.name);
 }
 
 function _hideAllActiveClass(tabs) {
@@ -55,5 +64,13 @@ function _setLocalNavigation(tabs) {
         _hideAllActiveClass(tabs);
         _showActivClass(navigation.querySelector(`[data-name=${nameTab}]`))
     }
+}
+
+function _showActiveComponent(name) {
+    this.tabs.find(tabComp => tabComp.name === name).component.show();
+}
+
+function _hideAllComponent() {
+    this.tabs.forEach(tab => tab.component.hide());
 }
 

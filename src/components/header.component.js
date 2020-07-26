@@ -18,7 +18,7 @@ export class HeaderComponent  extends Component{
 }
 
 function _buttonHandler() {
-    this.hide(this.$el);
+    this.hide();
 
     localStorage.setItem('visited', true);
 }

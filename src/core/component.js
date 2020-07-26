@@ -13,11 +13,11 @@ export  class Component {
         return this.localSettings;
     }
 
-    hide(el) {
-        el.classList.add('hide')
+    hide() {
+        this.$el.classList.add('hide')
     }
 
-    show(el) {
-        el.classList.remove('hide');
+    show() {
+        this.$el.classList.remove('hide');
     }
 }
