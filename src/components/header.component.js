@@ -6,24 +6,25 @@ export class HeaderComponent  extends Component{
 
     init() {
         const btn = this.$el.querySelector('.js-header-start');
-        let visited = localStorage.getItem('close') || false;
 
-        _headerLocalSettings.call(this, visited);
+        _headerLocalSettings.call(this);
 
         btn.addEventListener('click', _buttonHandler.bind(this), {once: true});
+    }
+    
+    destroy() {
+        localStorage.removeItem('visited');
     }
 }
 
 function _buttonHandler() {
     this.hide(this.$el);
 
-    visited = true;
-
-    localStorage.setItem('close', visited);
+    localStorage.setItem('visited', true);
 }
 
-function _headerLocalSettings(visited) {
-    if(visited) {
+function _headerLocalSettings() {
+    if(localStorage.getItem('visited')) {
         this.hide(this.$el);
         document.body.style.overflow = '';
     } else {
