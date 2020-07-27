@@ -8,9 +8,9 @@ export class NavigationComponent extends Component {
 
     init() {
         const navigation = this.$el;
-        const tabs = navigation.querySelectorAll('.tab');
+        const tabsNav = navigation.querySelectorAll('.tab');
 
-        _setLocalNavigation(tabs);
+        _setLocalNavigation(tabsNav);
 
         navigation.addEventListener('click', _tabClickHandler.bind(this))
     }
@@ -34,7 +34,6 @@ function _tabClickHandler(e) {
     
     _hideAllActiveClass(tabs);
     _showActivClass(tab);
-
     _hideAllComponent.call(this);
     _showActiveComponent.call(this, tab.dataset.name);
 }
@@ -58,11 +57,11 @@ function _removeActiveClass(tab) {
     tab.classList.remove('active');
 }
 
-function _setLocalNavigation(tabs) {
+function _setLocalNavigation(tabsNav) {
     const nameTab = localStorage.getItem('activeTab');
     if(nameTab) {
-        _hideAllActiveClass(tabs);
-        _showActivClass(navigation.querySelector(`[data-name=${nameTab}]`))
+        _hideAllActiveClass(tabsNav);
+        _showActivClass(navigation.querySelector(`[data-name=${nameTab}]`));
     }
 }
 
