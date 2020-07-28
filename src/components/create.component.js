@@ -1,6 +1,7 @@
 import { Component } from '../core/component';
 import { Form } from '../core/form';
 import { Validators } from '../core/validators';
+import { apiService } from '../services/api.service'
 
 export class CreateComponent extends Component{
     constructor(id) {
@@ -15,18 +16,27 @@ export class CreateComponent extends Component{
             fulltext: [Validators.required, Validators.minLength(10)]
         });
     }
+
+    destroy() {
+        this.$el.removeEventListener('submit', _submitHandler.bind(this));
+        this.$el = null;
+        this.form = null;
+    }
 }
 
-function _submitHandler(e) {
+async function _submitHandler(e) {
     e.preventDefault();
 
     if(this.form.isValid()) {
         const formData = {
             type: this.$el.type.value,
+            date: new Date().toLocaleDateString(),
             ...this.form.value()
         }
-        console.log(formData);
-    } else {
-        console.warn('Form is not invalid');
-    }
+
+        const response = await apiService.createPost(formData);
+        console.log(response);
+        this.form.clear();
+        alert('Запись создана в базе данных');
+    } 
 }

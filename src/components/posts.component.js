@@ -4,4 +4,7 @@ export class PostsComponent extends Component{
     constructor(id) {
         super(id)
     }
+    init() {
+        console.log('post init')
+    }
 }

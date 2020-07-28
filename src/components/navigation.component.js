@@ -10,7 +10,7 @@ export class NavigationComponent extends Component {
         const navigation = this.$el;
         const tabsNav = navigation.querySelectorAll('.tab');
 
-        _setLocalNavigation(tabsNav);
+        //_setLocalNavigation(tabsNav);
 
         navigation.addEventListener('click', _tabClickHandler.bind(this))
     }
@@ -22,6 +22,8 @@ export class NavigationComponent extends Component {
     destroy() {
         navigation.removeEventListener('click', _tabClickHandler);
         localStorage.removeItem('activeTab');
+        this.tabs = null;
+        this.$el = null;
     }
 }
 
