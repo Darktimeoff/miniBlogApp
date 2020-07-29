@@ -25,6 +25,15 @@ class ApiService {
         }
     }
 
+    async getPostById(id) {
+        try {
+            const request = new Request(this.url + `/posts/${id}.json`)
+            return useRequest(request);
+        } catch (error) {
+            console.error(error)
+        }
+    }
+
 }
 
 export const apiService = new ApiService('https://js-mini-blog.firebaseio.com');
