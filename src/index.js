@@ -6,6 +6,7 @@ import { FavoriteComponent } from './components/favorite.component';
 import { PostsComponent } from './components/posts.component';
 import { CreateComponent } from './components/create.component';
 import { LoaderComponent } from'./components/loader.component';
+import '../dist/styles.css';
 
 new HeaderComponent('header');
 

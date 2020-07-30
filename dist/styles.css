@@ -1,7 +1,11 @@
 .hide {
   display: none !important;
 }
-
+#auth {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
 .w-container {
   margin: 0 auto;
   width: 600px;
@@ -58,3 +62,4 @@ textarea {
 .multi-line {
   white-space: pre-line;
 }
+

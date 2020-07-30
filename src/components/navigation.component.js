@@ -1,4 +1,6 @@
 import { Component } from '../core/component'
+
+
 export class NavigationComponent extends Component {
     constructor(id) {
         super(id);
@@ -9,14 +11,22 @@ export class NavigationComponent extends Component {
     init() {
         const navigation = this.$el;
         const tabsNav = navigation.querySelectorAll('.tab');
-
-        //_setLocalNavigation(tabsNav);
+        
+        window.addEventListener('load', _anonymousSettings.bind(this));
 
         navigation.addEventListener('click', _tabClickHandler.bind(this))
     }
 
     registerTabs(tabs) {
         this.tabs = tabs;
+    }
+
+    static onAuth(signIn) {
+        if(signIn == 'anonymous') {
+            _anonymousSettings.call(this);
+        } else {
+            return;
+        }
     }
 
     destroy() {
@@ -75,3 +85,12 @@ function _hideAllComponent() {
     this.tabs.forEach(tab => tab.component.hide());
 }
 
+function _anonymousSettings() {
+    if(localStorage.getItem('signIn') === 'anonymous') {
+        document.querySelector('[data-name="create"]').classList.add('hide');
+        document.querySelector('#create').classList.add('hide');
+        _showActivClass(document.querySelector('[data-name="posts"]'));
+        _showActiveComponent.call(this, 'posts');
+    }
+    else return;
+}

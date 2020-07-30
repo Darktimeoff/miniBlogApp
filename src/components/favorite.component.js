@@ -44,7 +44,6 @@ async function _linkClickHandler(e) {
         this.$el.innerHTML = '';
 
         const post = await apiService.getPostById(id);
-        console.log(post);
         this.loader.hide();
         this.$el.insertAdjacentHTML('afterbegin', createHTML(post.date, post.fulltext, post.title, post.type))
     }

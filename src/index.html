@@ -14,14 +14,32 @@
 </head>
 <body>
 <header id="header">
-  <h1 class="title">БЛОГ 001001</h1>
-  <h2 class="subtitle">Создавайте статьи и добавляйте их в избранное</h2>
-  <button class="get-started button button-primary button-large js-header-start">Приступить</button>
+  <form id="auth">
+    <h1 class="h4">Авторизация</h1>
+
+    <div class="form-control">
+      <label>Почта</label>
+      <input type="email" name="email" placeholder="Введите почту">
+    </div>
+
+    <div class="form-control">
+      <label>Пароль</label>
+      <input type="password" name="password" placeholder="Введите пароль">
+    </div>
+
+    <button
+      class="button-primary button-round button-shadow center"
+      type="submit"
+    >Войти</button>
+    <div class="form-control">
+      <a href="#" class="auth-link">Анонимная Авторизация</a>
+    </div>
+  </form>
 </header>
 
 <section class="container w-container">
   <ul class="tabs" id="navigation">
-    <li><a class="tab " href="#" data-name="posts">Посты</a></li>
+    <li><a class="tab" href="#" data-name="posts">Посты</a></li>
     <li><a class="tab active" href="#" data-name="create">Создать</a></li>
     <li><a class="tab" href="#" data-name="favorite">Избранное</a></li>
   </ul>

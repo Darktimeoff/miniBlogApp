@@ -33,7 +33,6 @@ class ApiService {
             console.error(error)
         }
     }
-
 }
 
 export const apiService = new ApiService('https://js-mini-blog.firebaseio.com');
