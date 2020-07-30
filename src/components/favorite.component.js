@@ -14,7 +14,6 @@ export class FavoriteComponent extends Component{
 
     onShow() {
         const list =  JSON.parse(localStorage.getItem('favorites'));
-
         const html = _renderFavorites.call(this, list)
         this.$el.insertAdjacentHTML('afterbegin', html);
     }

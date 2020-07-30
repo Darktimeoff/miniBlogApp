@@ -37,7 +37,7 @@ function _buttonHandler(e) {
     document.body.style.overflow = '';
 
     NavigationComponent.onAuth('anonymous')
-
+    
     localStorage.setItem('visited', true);
     localStorage.setItem('signIn', 'anonymous');
 }

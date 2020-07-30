@@ -5,14 +5,14 @@ export class NavigationComponent extends Component {
     constructor(id) {
         super(id);
 
-        this.tabs = []
+        this.tabs = [];
     }
 
     init() {
         const navigation = this.$el;
         const tabsNav = navigation.querySelectorAll('.tab');
         
-        window.addEventListener('load', _anonymousSettings.bind(this));
+        window.addEventListener('load', _checkTypeAuthentication.bind(this));
 
         navigation.addEventListener('click', _tabClickHandler.bind(this))
     }
@@ -22,11 +22,11 @@ export class NavigationComponent extends Component {
     }
 
     static onAuth(signIn) {
-        if(signIn == 'anonymous') {
-            _anonymousSettings.call(this);
-        } else {
-            return;
-        }
+        if(signIn =='anonymous') {
+            document.querySelector('[data-name="create"]').classList.add('hide');
+            document.querySelector('#create').classList.add('hide');
+            document.querySelector('[data-name="posts"]').click();
+        } else return;
     }
 
     destroy() {
@@ -85,12 +85,15 @@ function _hideAllComponent() {
     this.tabs.forEach(tab => tab.component.hide());
 }
 
-function _anonymousSettings() {
+function _checkTypeAuthentication() {
     if(localStorage.getItem('signIn') === 'anonymous') {
-        document.querySelector('[data-name="create"]').classList.add('hide');
-        document.querySelector('#create').classList.add('hide');
-        _showActivClass(document.querySelector('[data-name="posts"]'));
-        _showActiveComponent.call(this, 'posts');
-    }
-    else return;
+        _anonymousSettings.call(this);
+    } else return;
+}
+
+function _anonymousSettings() {
+    document.querySelector('[data-name="create"]').classList.add('hide');
+    document.querySelector('#create').classList.add('hide');
+    _showActivClass(document.querySelector('[data-name="posts"]'));
+    _showActiveComponent.call(this, 'posts');
 }
