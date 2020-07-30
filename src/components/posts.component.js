@@ -15,9 +15,9 @@ export class PostsComponent extends Component{
 
 	async onShow() {
 		this.loader.show();
-
+		const select = this.$el.querySelector('select')
 		const data = await apiService.getPost();
-
+		select.addEventListener('change', (e)=> _selectHandler.call(this, e, data));
 		this.loader.hide();
 		_renderPosts.call(this, data);
 	}
@@ -30,14 +30,14 @@ export class PostsComponent extends Component{
 
 function _renderPosts(data) {
 	TransformService.fbObjectToArray(data).forEach( ({ date, fulltext, title, type, id }) => {
-		this.$el.insertAdjacentHTML('afterbegin', createHTML(date, fulltext, title, type, id, _findInArrObjProp));
+		this.$el.querySelector('.posts-wrapper').insertAdjacentHTML('afterbegin', createHTML(date, fulltext, title, type, id, _findInArrObjProp));
 	});
 }
 
 
 
 function _clearPosts() {
-	this.$el.innerHTML = '';
+	this.$el.querySelector('.posts-wrapper').innerHTML = '';
 }
 
 function _buttonHandler(e) {
@@ -65,4 +65,18 @@ function _buttonHandler(e) {
 
 function _findInArrObjProp(array, id) {
 	return array.find(item => item.id === id);
+}
+
+function _selectHandler(e, data) {
+	e.preventDefault();
+	const sortValue = e.target.value;
+	if(sortValue === 'all') {
+		_clearPosts.call(this);
+		console.log(data);
+		_renderPosts.call(this, data);
+	} else {
+		const sortData = TransformService.fbObjectToArray(data).filter(obj => obj.type === sortValue);
+		_clearPosts.call(this);
+		_renderPosts.call(this, sortData);
+	}
 }
