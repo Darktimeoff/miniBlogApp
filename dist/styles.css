@@ -1,6 +1,8 @@
 .hide {
   display: none !important;
 }
+
+
 #auth {
   display: flex;
   flex-direction: column;

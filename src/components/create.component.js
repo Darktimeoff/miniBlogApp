@@ -36,7 +36,6 @@ async function _submitHandler(e) {
 
         const response = await apiService.createPost(formData);
         
-        this.form.clear();
         alert('Запись создана в базе данных');
     } 
 }
